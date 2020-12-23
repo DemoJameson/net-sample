@@ -17,7 +17,9 @@ jobs:
       uses: NuGet/setup-nuget@v1.0.5
     - run: nuget restore net-sample.sln
     - name: Build
-      run: msbuild net-sample.sln
+      run: |
+           cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
+           .\MSBuild.exe $Env:GITHUB_WORKSPACE\net-sample.sln
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
